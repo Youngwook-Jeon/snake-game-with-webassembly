@@ -1,7 +1,7 @@
 import init, { World } from 'snake_game';
 
 init().then((_) => {
-  const CELL_SIZE = 10;
+  const CELL_SIZE = 20;
   const world = World.new();
   const worldWidth = world.width();
 
@@ -24,5 +24,16 @@ init().then((_) => {
     ctx.stroke();
   }
 
+  function drawSnake() {
+    const snakeIdx = world.snake_head_idx();
+    const col = snakeIdx % worldWidth;
+    const row = Math.floor(snakeIdx / worldWidth);
+
+    ctx.beginPath();
+    ctx.fillRect(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    ctx.stroke();
+  }
+
   drawWorld();
+  drawSnake();
 });
