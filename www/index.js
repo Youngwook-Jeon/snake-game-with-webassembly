@@ -34,6 +34,20 @@ init().then((_) => {
     ctx.stroke();
   }
 
-  drawWorld();
-  drawSnake();
+  function paint() {
+    drawWorld();
+    drawSnake();
+  }
+
+  function update() {
+    setTimeout(() => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      world.update();
+      paint();
+      requestAnimationFrame(update);
+    }, 100);
+  }
+
+  paint();
+  update();
 });
